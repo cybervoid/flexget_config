@@ -1,0 +1,5 @@
+secrets.yml
+*.log*
+*.sqlite
+.config-lock
+*.swp

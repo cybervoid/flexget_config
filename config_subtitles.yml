@@ -1,0 +1,31 @@
+tasks:
+  subtitles:
+    filesystem:
+      path:
+        - /media/transmission/films_flex
+        - /media/transmission/series_flex
+        - /media/films/films
+        - /media/films/shows
+      regexp: '.*\.(avi|mkv|mp4)$'
+      recursive: yes
+    regexp:
+      reject:
+        - \bsample\b: {from: title}
+    accept_all: yes
+    no_entries_ok: yes
+    seen: local
+    #disable_builtins: [retry_failed]
+    subliminal:
+      languages:
+        - eng
+        - spa
+      alternatives:
+        - spa
+      exact_match: yes
+    priority: 3
+
+schedules:
+  - tasks: 
+      - subtitles
+    interval:
+      hours: 2

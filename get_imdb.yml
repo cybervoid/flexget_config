@@ -1,0 +1,48 @@
+secrets: secrets.yml
+
+templates:
+  download:
+    seen: local
+    verify_ssl_certificates: no
+    priority: 2
+    transmission:
+      host: localhost
+      port: 9091
+      username: '{{ secrets.transmission.user }}'
+      password: '{{ secrets.transmission.password }}'
+      addpaused: no
+
+tasks:
+  get_imdb:
+    verify_ssl_certificates: no
+    imdb:
+      min_score: 6.2
+      min_votes: 2000
+      min_year: 1985
+    rss:
+      url: http://kickass.to/movies/?rss=1
+    accept_all: yes
+    movie_queue:
+      action: add
+      quality: hdrip+ !cam
+    seen: local
+
+ #download movies from queue, from rss feed
+  download-movies:
+    template: [download]
+    discover:
+      what:
+        - emit_movie_queue: yes
+      from:
+        - torrentz: verified
+        - kat:
+            category: movies
+            verified: yes
+        - piratebay:
+            category: movies
+        - rarbg:
+            sorted_by: seeders
+
+    movie_queue: accept
+    transmission:
+      path: /media/transmission/films_flex

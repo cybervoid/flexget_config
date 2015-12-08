@@ -166,7 +166,7 @@ tasks:
 schedules:
   - tasks: 
       - movie-queue
-      - get_imdb
+#      - get_imdb
       - download-shows
       - download-movies
       - sort-movies

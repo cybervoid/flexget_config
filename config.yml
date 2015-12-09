@@ -33,19 +33,19 @@ tasks:
     priority: 1
     seen: local
   #get the movies from IMDB
-#  get_imdb:
-#    verify_ssl_certificates: no
-#    imdb:
-#      min_score: 6.2
-#      min_votes: 2000
-#      min_year: 1985
-#    rss:
-#      url: http://kickass.to/movies/?rss=1
-#    accept_all: yes
-#    movie_queue:
-#      action: add
-#      quality: hdrip+ !cam
-#    seen: local
+  get_imdb:
+    verify_ssl_certificates: no
+    imdb:
+      min_score: 6.2
+      min_votes: 2000
+      min_year: 1985
+    rss:
+      url: http://kickass.to/movies/?rss=1
+    accept_all: yes
+    movie_queue:
+      action: add
+      quality: hdrip+ !cam
+    seen: local
 
   # download shows from torrent rss feeds
   download-shows:
@@ -112,7 +112,7 @@ tasks:
       parse_only: yes
     # TVDB doesn't recognise "Adventure Time with Finn and Jake" so you must add such exceptions here manually
     series:
-      - Arrow
+      - Supernatural
     copy:
       # this is where the series will be put
       to: /media/films/shows/{{ series_name }}/Season {{series_season}}

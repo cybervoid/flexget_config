@@ -33,19 +33,19 @@ tasks:
     priority: 1
     seen: local
   #get the movies from IMDB
-#  get_imdb:
-#    verify_ssl_certificates: no
-#    imdb:
-#      min_score: 6.2
-#      min_votes: 2000
-#      min_year: 1985
-#    rss:
-#      url: http://kickass.to/movies/?rss=1
-#    accept_all: yes
-#    movie_queue:
-#      action: add
-#      quality: hdrip+ !cam
-#    seen: local
+  get_imdb:
+    verify_ssl_certificates: no
+    imdb:
+      min_score: 6.2
+      min_votes: 2000
+      min_year: 1985
+    rss:
+      url: http://kickass.to/movies/?rss=1
+    accept_all: yes
+    movie_queue:
+      action: add
+      quality: hdrip+ !cam
+    seen: local
 
   # download shows from torrent rss feeds
   download-shows:
@@ -99,11 +99,6 @@ tasks:
     regexp:
       reject:
         - \bsample\b: {from: title}
-    accept_all: yes
-    no_entries_ok: yes
-    # Don't attempt to move if we don't have valid metadata
-    seen: local
-    priority: 4
     # this is needed for the episode names
     thetvdb_lookup: yes
     require_field: [series_name, series_id]
@@ -112,7 +107,19 @@ tasks:
       parse_only: yes
     # TVDB doesn't recognise "Adventure Time with Finn and Jake" so you must add such exceptions here manually
     series:
-      - Arrow
+      settings:
+        numeric:
+          ep_regexp:
+            - (\d\d)(\d\d)
+            - (\d)(\d\d)
+          parse_only: yes
+        sequence:
+          identified_by: sequence
+      numeric:
+        - Supernatural
+    accept_all: yes
+    no_entries_ok: yes
+    seen: local
     copy:
       # this is where the series will be put
       to: /media/films/shows/{{ series_name }}/Season {{series_season}}
@@ -123,8 +130,6 @@ tasks:
         - en.srt
         - es.srt
         - nfo
-
-
 
   # SORT DOWNLOADED MOVIES
   sort-movies:
@@ -166,7 +171,7 @@ tasks:
 schedules:
   - tasks: 
       - movie-queue
-      - get_imdb
+#      - get_imdb
       - download-shows
       - download-movies
       - sort-movies

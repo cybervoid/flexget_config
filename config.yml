@@ -21,16 +21,13 @@ tasks:
       list: watchlist
       type: movies
     accept_all: yes
-    movie_queue: add
     trakt_remove:
       username: '{{secrets.trakt.user}}'
       account: '{{secrets.trakt.user}}'
       list: watchlist
     movie_queue:
       action: add
-#      quality: dvdrip|bluray 720p+ xvid|divx|h264
       quality: hdrip+ !cam
-    priority: 1
     seen: local
   #get the movies from IMDB
   get_imdb:
@@ -81,9 +78,9 @@ tasks:
     movie_queue: accept
 #    torrent_alive: 5
 #    seen: local
-#    regexp:
-#      reject:
-#        - \b3D\b: {from: title}
+    regexp:
+      reject:
+        - \b3D\b: {from: title}
 #    priority: 2
     transmission:
       path: /media/transmission/films_flex
@@ -117,6 +114,7 @@ tasks:
           identified_by: sequence
       numeric:
         - Supernatural
+        - The Big Bang Theory
     accept_all: yes
     no_entries_ok: yes
     seen: local
@@ -153,6 +151,27 @@ tasks:
       to: /media/films/films/{{ movie_name }} ({{ movie_year }})
       filename: '{{ movie_name }} ({{ movie_year }}) - {{ quality }}.{{ location[-3:] }}'
 
+subtitles:
+    filesystem:
+      path:
+        - /media/transmission/series_flex
+        - /media/transmission/films_flex
+      regexp: '.*\.(avi|mkv|mp4)$'
+      recursive: yes
+    regexp:
+      reject:
+        - \bsample\b: {from: title}
+    accept_all: yes
+    no_entries_ok: yes
+    seen: local
+    #disable: [retry_failed]
+    subliminal:
+      languages:
+        - eng
+        - spa
+      exact_match: yes
+    priority: 3
+
 
 #  clean-transmission:
 #    manual: yes
@@ -176,7 +195,7 @@ schedules:
       - download-movies
       - sort-movies
       - sort-shows
-#      - clean-transmission
+      - subtitles
 
     interval:
       hours: 2

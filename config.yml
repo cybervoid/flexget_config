@@ -151,26 +151,26 @@ tasks:
       to: /media/films/films/{{ movie_name }} ({{ movie_year }})
       filename: '{{ movie_name }} ({{ movie_year }}) - {{ quality }}.{{ location[-3:] }}'
 
-subtitles:
-    filesystem:
-      path:
-        - /media/transmission/series_flex
-        - /media/transmission/films_flex
-      regexp: '.*\.(avi|mkv|mp4)$'
-      recursive: yes
-    regexp:
-      reject:
-        - \bsample\b: {from: title}
-    accept_all: yes
-    no_entries_ok: yes
-    seen: local
-    #disable: [retry_failed]
-    subliminal:
-      languages:
-        - eng
-        - spa
-      exact_match: yes
-    priority: 3
+  subtitles:
+      filesystem:
+        path:
+          - /media/transmission/series_flex
+          - /media/transmission/films_flex
+        regexp: '.*\.(avi|mkv|mp4)$'
+        recursive: yes
+      regexp:
+        reject:
+          - \bsample\b: {from: title}
+      accept_all: yes
+      no_entries_ok: yes
+      seen: local
+      #disable: [retry_failed]
+      subliminal:
+        languages:
+          - eng
+          - spa
+        exact_match: yes
+      priority: 3
 
 
 #  clean-transmission:

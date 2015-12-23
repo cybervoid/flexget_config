@@ -76,7 +76,12 @@ tasks:
             sorted_by: seeders
 
     movie_queue: accept
-#    torrent_alive: 5
+    exists_movie:
+      path:
+        - /media/transmission/series_films
+        - /media/films/films
+      allow_different_qualities: better
+#      [lookup]: {imdb|no}
 #    seen: local
     regexp:
       reject:

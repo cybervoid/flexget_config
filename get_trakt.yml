@@ -50,7 +50,7 @@ tasks:
     movie_queue: accept
     exists_movie:
       path:
-        - /media/transmission/series_films
+        - /media/transmission/films_flex
         - /media/films/films
       allow_different_qualities: better
 

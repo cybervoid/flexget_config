@@ -34,7 +34,8 @@ tasks:
       path:
         - /media/transmission/films_flex
         - /media/films/films
-#      allow_different_qualities: better
+        - /media/transmission/downloading
+      allow_different_qualities: better
 
 
  #download movies from queue, from rss feed

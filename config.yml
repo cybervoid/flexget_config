@@ -13,22 +13,6 @@ templates:
       addpaused: no
 
 tasks:
-  # download las peliculas de imdb
-  movie-queue:
-    trakt_list:
-      username: '{{secrets.trakt.user}}'
-      account: '{{secrets.trakt.user}}'
-      list: watchlist
-      type: movies
-    accept_all: yes
-    trakt_remove:
-      username: '{{secrets.trakt.user}}'
-      account: '{{secrets.trakt.user}}'
-      list: watchlist
-    movie_queue:
-      action: add
-      quality: hdrip+ !cam
-    seen: local
   #get the movies from IMDB
   get_imdb:
     verify_ssl_certificates: no
@@ -43,6 +27,14 @@ tasks:
       action: add
       quality: hdrip+ !cam
     seen: local
+    exists_movie:
+      path:
+        - /media/transmission/films_flex
+        - /media/films/films
+        - /media/transmission/downloading
+      allow_different_qualities: better
+    priority: 0
+
 
   # download shows from torrent rss feeds
   download-shows:
@@ -55,7 +47,7 @@ tasks:
       - /media/transmission/series_flex
       - /media/transmission/others
       - /media/films/shows/{{series_name}}
-    priority: 2
+    priority: 1
     transmission:
       path: /media/transmission/series_flex
 
@@ -76,17 +68,10 @@ tasks:
             sorted_by: seeders
 
     movie_queue: accept
-    exists_movie:
-      path:
-        - /media/transmission/series_films
-        - /media/films/films
-      allow_different_qualities: better
-#      [lookup]: {imdb|no}
-#    seen: local
     regexp:
       reject:
         - \b3D\b: {from: title}
-#    priority: 2
+    priority: 3
     transmission:
       path: /media/transmission/films_flex
 
@@ -122,6 +107,7 @@ tasks:
         - The Big Bang Theory
     accept_all: yes
     no_entries_ok: yes
+    priority: 4
     seen: local
     copy:
       # this is where the series will be put
@@ -146,7 +132,7 @@ tasks:
     imdb_lookup: yes
     tmdb_lookup: yes
     seen: local
-    priority: 4
+    priority: 5
     regexp:
       reject:
         - \bsample\b: {from: title}
@@ -175,7 +161,7 @@ tasks:
           - eng
           - spa
         exact_match: yes
-      priority: 3
+      priority: 6
 
 
 #  clean-transmission:
@@ -194,7 +180,6 @@ tasks:
     
 schedules:
   - tasks: 
-      - movie-queue
       - get_imdb
       - download-shows
       - download-movies

@@ -30,6 +30,12 @@ tasks:
       quality: hdrip+ !cam
     seen: local
     priority: 0
+    exists_movie:
+      path:
+        - /media/transmission/films_flex
+        - /media/films/films
+#      allow_different_qualities: better
+
 
  #download movies from queue, from rss feed
   download-movies:
@@ -48,12 +54,6 @@ tasks:
             sorted_by: seeders
 
     movie_queue: accept
-    exists_movie:
-      path:
-        - /media/transmission/films_flex
-        - /media/films/films
-      allow_different_qualities: better
-
 #    seen: local
     regexp:
       reject:

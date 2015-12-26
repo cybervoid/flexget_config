@@ -33,9 +33,10 @@ tasks:
     exists_movie:
       path:
         - /media/transmission/films_flex
-#        - /media/films/films
-#        - /media/transmission/downloading
+        - /media/films/films
+        - /media/transmission/downloading
       allow_different_qualities: better
+      type: files
 
 
  #download movies from queue, from rss feed

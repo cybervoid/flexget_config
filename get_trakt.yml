@@ -33,8 +33,8 @@ tasks:
     exists_movie:
       path:
         - /media/transmission/films_flex
-        - /media/films/films
-        - /media/transmission/downloading
+#        - /media/films/films
+#        - /media/transmission/downloading
       allow_different_qualities: better
 
 
@@ -68,8 +68,6 @@ schedules:
   - tasks:
       - movie-queue
       - download-movies
-      - sort-movies
-
 
     interval:
       hours: 2

@@ -123,6 +123,11 @@ tasks:
     tmdb_lookup: yes
     seen: local
     priority: 5
+    exists_movie:
+      path:
+        - /media/films/films
+      allow_different_qualities: better
+      type: files
     regexp:
       reject:
         - \bsample\b: {from: title}

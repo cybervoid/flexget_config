@@ -41,8 +41,8 @@ tasks:
     template: [download]
     ### Main RSS feed to keep up
     rss: http://showrss.info/user/13927.rss?magnets=true&namespaces=true&name=clean&quality=null&re=null
-    rss: https://kat.cr/usearch/dr%20ken%20category%3Atv/?rss=1&field=seeders&sorder=desc&rss=1
-    rss: https://kat.cr/usearch/2%20broke%20girls%20category%3Atv/?rss=1&field=seeders&sorder=desc&rss=1
+#    rss: https://kat.cr/usearch/dr%20ken%20category%3Atv/?rss=1&field=seeders&sorder=desc&rss=1
+
     accept_all: yes
     exists_series:
       - /media/transmission/downloading

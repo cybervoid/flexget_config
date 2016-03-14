@@ -179,6 +179,12 @@ tasks:
 #      delete_files: yes
 #      transmission_seed_limits: yes
 
+
+web_server:
+  bind: 0.0.0.0
+  port: 3539
+api: yes
+webui: yes
     
 schedules:
   - tasks: 

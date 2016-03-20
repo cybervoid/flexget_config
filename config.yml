@@ -107,6 +107,9 @@ tasks:
       numeric:
         - Supernatural
         - The Big Bang Theory
+        - 2 Broke Girls
+        - American Dad!
+
     accept_all: yes
     no_entries_ok: yes
     priority: 4

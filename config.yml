@@ -33,7 +33,7 @@ tasks:
         - /media/films/films
         - /media/transmission/downloading
       allow_different_qualities: better
-    priority: 0
+    priority: 3
 
 
   # download shows from torrent rss feeds
@@ -49,7 +49,7 @@ tasks:
       - /media/transmission/series_flex
       - /media/transmission/others
       - /media/films/shows/{{series_name}}
-    priority: 1
+    priority: 0
     transmission:
       path: /media/transmission/series_flex
 
@@ -73,7 +73,7 @@ tasks:
     regexp:
       reject:
         - \b3D\b: {from: title}
-    priority: 3
+    priority: 4
     transmission:
       path: /media/transmission/films_flex
 
@@ -112,7 +112,7 @@ tasks:
 
     accept_all: yes
     no_entries_ok: yes
-    priority: 4
+    priority: 1
     seen: local
     copy:
       # this is where the series will be put
@@ -137,7 +137,7 @@ tasks:
     imdb_lookup: yes
     tmdb_lookup: yes
     seen: local
-    priority: 5
+    priority: 2
     regexp:
       reject:
         - \bsample\b: {from: title}

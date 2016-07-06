@@ -13,25 +13,17 @@ templates:
       addpaused: no
 
 tasks:
-  # download las peliculas de imdb
-  movie-queue:
+
+  # download las peliculas de trakt
+  get-trakt:
     trakt_list:
       username: '{{secrets.trakt.user}}'
-#      account: '{{secrets.trakt.user}}'
       list: watchlist
       type: movies
     accept_all: yes
-    list_remove:
-      trakt_list:
-        username: '{{secrets.trakt.user}}'
-        account: '{{secrets.trakt.user}}'
-        list: watchlist
-        type: movies
-    movie_queue:
-      action: add
-      quality: hdrip+ !cam
+    list_add:
+      - movie_list: trakt-movies
     seen: local
-    priority: 0
     exists_movie:
       path:
         - /media/transmission/films_flex
@@ -40,13 +32,20 @@ tasks:
       allow_different_qualities: better
       type: files
 
+    list_remove:
+      - trakt_list:
+          username: rafaelgil83
+          account: rafaelgil83
+          list: watchlist
+          type: movies
+
 
  #download movies from queue, from rss feed
   download-movies:
     template: [download]
     discover:
       what:
-        - emit_movie_queue: yes
+        - movie_list: trakt-movies
       from:
         - torrentz: verified
         - kat:
@@ -56,9 +55,7 @@ tasks:
             category: movies
         - rarbg:
             sorted_by: seeders
-
-    movie_queue: accept
-#    seen: local
+    quality: hdrip+ !cam
     regexp:
       reject:
         - \b3D\b: {from: title}

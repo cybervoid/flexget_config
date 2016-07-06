@@ -2,7 +2,6 @@ secrets: secrets.yml
 
 templates:
   download:
-    seen: local
     verify_ssl_certificates: no
     priority: 2
     transmission:
@@ -23,7 +22,6 @@ tasks:
     accept_all: yes
     list_add:
       - movie_list: trakt-movies
-    seen: local
     exists_movie:
       path:
         - /media/transmission/films_flex
@@ -34,10 +32,11 @@ tasks:
 
     list_remove:
       - trakt_list:
-          username: rafaelgil83
-          account: rafaelgil83
+          username: '{{secrets.trakt.user}}'
+          account: '{{secrets.trakt.user}}'
           list: watchlist
           type: movies
+    priority: 0
 
 
  #download movies from queue, from rss feed
@@ -139,8 +138,9 @@ tasks:
 
 schedules:
   - tasks:
-      - movie-queue
+      - get-trakt
       - download-movies
+      - sort-movies
 
     interval:
       hours: 2

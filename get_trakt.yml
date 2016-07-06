@@ -21,10 +21,12 @@ tasks:
       list: watchlist
       type: movies
     accept_all: yes
-    trakt_remove:
-      username: '{{secrets.trakt.user}}'
-      account: '{{secrets.trakt.user}}'
-      list: watchlist
+    list_remove:
+      trakt_list:
+        username: '{{secrets.trakt.user}}'
+        account: '{{secrets.trakt.user}}'
+        list: watchlist
+        type: movies
     movie_queue:
       action: add
       quality: hdrip+ !cam

@@ -46,10 +46,6 @@ tasks:
       what:
         - movie_list: trakt-movies
       from:
-        - torrentz: verified
-        - kat:
-            category: movies
-            verified: yes
         - piratebay:
             category: movies
         - rarbg:
@@ -58,7 +54,9 @@ tasks:
     regexp:
       reject:
         - \b3D\b: {from: title}
-#    priority: 2
+    list_match:
+      from:
+        - movie_list: trakt-movies
     transmission:
       path: /media/transmission/films_flex
     priority: 2
@@ -103,10 +101,11 @@ tasks:
       # save the file as "Series Name - SxxEyy - Episode Name.ext"
       filename: '{{ series_name }} - {{ series_id }} - {{ tvdb_ep_name }}{{ location | pathext }}'
       along:
-        - srt
-        - en.srt
-        - es.srt
-        - nfo
+        files:
+          - srt
+          - en.srt
+          - es.srt
+          - nfo
 
   # SORT DOWNLOADED MOVIES
   sort-movies:
